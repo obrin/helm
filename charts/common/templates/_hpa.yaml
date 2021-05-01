@@ -1,0 +1,34 @@
+{{- /*
+
+  templates/_hpa.yaml
+
+  Templates for HPA
+
+  This takes two objects in the context:
+  - top: the top context
+  - hpa: the properties of the HPA
+*/ -}}
+
+{{- define "common.hpa" -}}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "common.fullname" (dict "top" $.top "extra" $.hpa) }}
+  labels:
+    {{- include "common.labels" $.top | nindent 4 }}
+  {{- with $.hpa.annotations }}
+  annotations:
+    {{- toYaml . | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ default (include "common.fullname" (dict "top" $.top "extra" $.hpa)) $.hpa.targetName | quote }}
+  minReplicas: {{ required "hpa minReplicas is required" $.hpa.minReplicas }}
+  maxReplicas: {{ required "hpa maxReplicas is required" $.hpa.maxReplicas }}
+  {{- with $.hpa.metrics }}
+  metrics:
+    {{- toYaml . | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+{{- end -}}

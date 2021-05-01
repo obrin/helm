@@ -1,0 +1,45 @@
+{{- /*
+
+  templates/_init-container.yaml
+
+  This takes two objects in the context:
+  - top: the top context
+  - container: the properties of the container.
+
+*/ -}}
+
+{{- define "common.init-container" }}
+- name: "init-container"
+  image: "{{ .container.image.repository }}{{ if .container.image.tag }}:{{ .container.image.tag }}{{ else if .top.Values.image }}:{{ .top.Values.image.tag }}{{ end }}"
+  imagePullPolicy: {{ .container.pullPolicy | default "" | quote }}
+  {{- with .container.command }}
+  command:
+    {{- toYaml . | trimSuffix "\n" | nindent 4  }}
+  {{- end }}
+  {{- with .container.args }}
+  args:
+    {{- range . }}
+    - {{ . | quote }}
+    {{- end }}
+  {{- end }}
+  {{- with .container.env }}
+  env:
+    {{- toYaml . | trimSuffix "\n" | nindent 4  }}
+  {{- end }}
+  {{- with .container.ports }}
+  ports:
+    {{- toYaml . | trimSuffix "\n" | nindent 4  }}
+  {{- end }}
+  {{- with .container.livenessProbe }}
+  livenessProbe:
+    {{- toYaml . | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+  {{- with .container.resources }}
+  resources:
+    {{- toYaml . | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+  {{- if .container.securityContext }}
+  securityContext:
+    {{- toYaml .container.securityContext | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+{{- end -}}

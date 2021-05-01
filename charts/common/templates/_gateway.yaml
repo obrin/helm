@@ -1,0 +1,32 @@
+{{- /*
+  templates/_gateway.yaml
+
+  Template for gateway
+
+  This takes two objects in the context:
+  - top: the top context
+  - gateway: the properties of the service.
+*/ -}}
+
+{{- define "common.gateway" -}}
+{{- $fullName := include "common.fullname" (dict "top" $.top "extra" .gateway) -}}
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  {{- with .gateway.annotations }}
+  annotations:
+    {{- toYaml . | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+  name: {{ $fullName }}
+  labels:
+    {{- include "common.labels" $.top | nindent 4 }}
+spec:
+  {{- with .gateway.selector }}
+  selector:
+    {{- toYaml . | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+  {{- with .gateway.servers }}
+  servers:
+    {{- toYaml . | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+{{- end -}}

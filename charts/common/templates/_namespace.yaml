@@ -1,0 +1,22 @@
+{{- /*
+
+  template/_namespace.yaml
+
+  Template deployment
+  @author Jordan Yong<jordanyong23@gmail.com>
+
+  This takes two objects in the context
+  - top: the top context
+  - namespace: the properties of the deployment
+*/ -}}
+
+{{- define "common.namespace" -}}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .namespace.name }}
+  {{- with .namespace.labels }}
+  labels:
+  {{- toYaml . | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+{{- end -}}
