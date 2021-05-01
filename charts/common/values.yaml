@@ -1,4 +1,0 @@
-# common default values
----
-deploymentDefaults: 
-  replicaCount: 1
