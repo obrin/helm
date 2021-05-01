@@ -13,12 +13,12 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-05-01T16:09:14.763670331Z"
+    created: "2021-05-01T16:10:19.775479231Z"
     description: A common helm chart for Kubenetes
-    digest: d083dd933be374cc7566cf016b0ca86492c070d6fa66fd84f5b74328c5d4ba62
+    digest: aef59efac3f7c3c657059d299bc1fe046ea1fb0c6202bdadea4777e9f6af0662
     name: common
     type: library
     urls:
     - https://obrin.github.io/helm-charts/common-0.1.3.tgz
     version: 0.1.3
-generated: "2021-05-01T16:09:14.763083877Z"
+generated: "2021-05-01T16:10:19.774899271Z"
