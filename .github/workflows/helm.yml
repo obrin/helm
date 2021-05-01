@@ -2,7 +2,11 @@
 #   uses: stefanprodan/helm-gh-pages@v1.4.1
 
 name: release
-on: [push]
+on:
+  push:
+    branches:
+    - 'master'
+    - 'helm-*'
 
 jobs:
   release:
