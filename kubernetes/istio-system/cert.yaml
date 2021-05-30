@@ -1,0 +1,33 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: home-local-selfsigned
+  namespace: istio-system
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: httpbin-home-local-cert
+  namespace: istio-system
+spec:
+  secretName: httpbin-home-local-cert
+  commonName: home.local
+  dnsNames:
+  - httpbin.home.local
+  issuerRef:
+    name: home-local-selfsigned
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: home-local-cert
+  namespace: istio-system
+spec:
+  secretName: home-local-cert
+  commonName: home.local
+  dnsNames:
+  - '*.home.local'
+  issuerRef:
+    name: home-local-selfsigned
