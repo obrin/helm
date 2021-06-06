@@ -22,6 +22,19 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
+  name: voyager-home-local-cert
+  namespace: istio-system
+spec:
+  secretName: api-home-local-cert
+  commonName: home.local
+  dnsNames:
+  - api.home.local
+  issuerRef:
+    name: home-local-selfsigned
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
   name: home-local-cert
   namespace: istio-system
 spec:
