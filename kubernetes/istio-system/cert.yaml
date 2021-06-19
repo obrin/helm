@@ -57,3 +57,16 @@ spec:
   - config.home.local
   issuerRef:
     name: home-local-selfsigned
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: config-proxy-home-local-cert
+  namespace: istio-system
+spec:
+  secretName: config-proxy-home-local-cert
+  commonName: home.local
+  dnsNames:
+  - config-proxy.home.local
+  issuerRef:
+    name: home-local-selfsigned
