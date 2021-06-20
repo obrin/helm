@@ -1,3 +1,4 @@
 steps:
   - label: 'Apply certs'
-    command: 'kubectl apply -f kubernetes/istio-system'
+    # TODO: Abstract to containers and BK plugins
+    command: 'microk8s.kubectl apply -f kubernetes/istio-system'
