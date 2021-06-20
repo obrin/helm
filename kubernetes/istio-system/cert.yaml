@@ -70,3 +70,17 @@ spec:
   - config-proxy.home.local
   issuerRef:
     name: home-local-selfsigned
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: httpbin-home-local-cert
+  namespace: istio-system
+spec:
+  secretName: httpbin-home-local-cert
+  commonName: home.local
+  dnsNames:
+  - httpbin.home.local
+  - httpbin2.home.local
+  issuerRef:
+    name: httpbin-home-local-selfsigned
