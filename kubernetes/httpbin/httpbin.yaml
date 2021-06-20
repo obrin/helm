@@ -74,12 +74,11 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: httpbin
-  namespace: httpbin
 spec:
   hosts:
-  - "*"
+  - "httpbin.home.local"
   gateways:
-  - httpbin/httpbin-gateway
+  - httpbin-gateway
   http:
   - match:
     - uri:

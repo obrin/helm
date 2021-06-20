@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: httpbin-gateway
-  namespace: httpbin
 spec:
   selector:
     istio: ingressgateway
@@ -13,12 +12,14 @@ spec:
       protocol: HTTP
     hosts:
     - "httpbin.home.local"
+    - "httpbin2.home.local"
   - port:
       number: 443
       name: https
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: home-local-cert
+      credentialName: httpbin-home-local-cert
     hosts:
     - "httpbin.home.local"
+    - "httpbin2.home.local"
