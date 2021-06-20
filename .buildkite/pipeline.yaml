@@ -1,0 +1,3 @@
+steps:
+  - label: 'Apply certs'
+    command: 'ls'
