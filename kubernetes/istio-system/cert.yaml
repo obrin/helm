@@ -20,6 +20,7 @@ spec:
   - 'voyager.home.local'
   - 'config.home.local'
   - 'config-proxy.home.local'
+  - 'keycloak.home.local'
   issuerRef:
     name: home-local-selfsigned
 ---
