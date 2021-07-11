@@ -15,60 +15,11 @@ spec:
   secretName: home-local-cert
   commonName: home.local
   dnsNames:
-  - '*.home.local'
   - 'store.home.local'
-  issuerRef:
-    name: home-local-selfsigned
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: voyager-home-local-cert
-  namespace: istio-system
-spec:
-  secretName: voyager-home-local-cert
-  commonName: home.local
-  dnsNames:
-  - voyager.home.local
-  issuerRef:
-    name: home-local-selfsigned
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: api-home-local-cert
-  namespace: istio-system
-spec:
-  secretName: api-home-local-cert
-  commonName: home.local
-  dnsNames:
-  - api.home.local
-  issuerRef:
-    name: home-local-selfsigned
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: config-home-local-cert
-  namespace: istio-system
-spec:
-  secretName: config-home-local-cert
-  commonName: home.local
-  dnsNames:
-  - config.home.local
-  issuerRef:
-    name: home-local-selfsigned
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: config-proxy-home-local-cert
-  namespace: istio-system
-spec:
-  secretName: config-proxy-home-local-cert
-  commonName: home.local
-  dnsNames:
-  - config-proxy.home.local
+  - 'api.home.local'
+  - 'voyager.home.local'
+  - 'config.home.local'
+  - 'config-proxy.home.local'
   issuerRef:
     name: home-local-selfsigned
 ---
