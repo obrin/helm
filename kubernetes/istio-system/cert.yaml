@@ -16,6 +16,7 @@ spec:
   commonName: home.local
   dnsNames:
   - '*.home.local'
+  - 'store.home.local'
   issuerRef:
     name: home-local-selfsigned
 ---
@@ -84,16 +85,3 @@ spec:
   - httpbin2.home.local
   issuerRef:
     name: httpbin-home-local-selfsigned
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: store-home-local-cert
-  namespace: istio-system
-spec:
-  secretName: store-home-local-cert
-  commonName: home.local
-  dnsNames:
-  - store.home.local
-  issuerRef:
-    name: store-home-local-selfsigned
